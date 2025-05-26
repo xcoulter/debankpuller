@@ -23,8 +23,11 @@ def fetch_debank_balances(wallet):
         return cache[wallet]['data']
 
     url = f"https://openapi.debank.com/v1/user/total_balance?id={wallet}"
-    resp = requests.get(url)
-    if resp.status_code != 200:
+    try:
+        resp = requests.get(url)
+        resp.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f"API request failed: {e}")
         return None
 
     data = resp.json()
@@ -41,3 +44,4 @@ def fetch_debank_balances(wallet):
     cache[wallet] = {"timestamp": now, "data": result}
     save_cache(cache)
     return result
+
