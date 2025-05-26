@@ -2,6 +2,7 @@ import requests
 import time
 import json
 import os
+import streamlit as st
 
 CACHE_FILE = "cache.json"
 CACHE_DURATION = 3600  # 1 hour
@@ -31,7 +32,7 @@ def fetch_debank_balances(wallet):
         resp = requests.get(url, headers=headers)
         resp.raise_for_status()
     except requests.exceptions.RequestException as e:
-        print(f"API request failed: {e}")
+        st.error(f"API request failed: {e}")
         return None
 
     data = resp.json()
