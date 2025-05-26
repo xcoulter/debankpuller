@@ -41,4 +41,3 @@ def fetch_debank_balances(wallet):
     cache[wallet] = {"timestamp": now, "data": result}
     save_cache(cache)
     return result
-
