@@ -33,3 +33,4 @@ def run_scheduler():
 
     thread = threading.Thread(target=loop, daemon=True)
     thread.start()
+
