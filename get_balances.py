@@ -2,7 +2,6 @@ import requests
 import time
 import json
 import os
-import streamlit as st
 
 CACHE_FILE = "cache.json"
 CACHE_DURATION = 3600  # 1 hour
@@ -24,8 +23,7 @@ def fetch_debank_balances(wallet):
         return cache[wallet]['data']
 
     url = f"https://openapi.debank.com/v1/user/total_balance?id={wallet}"
-    headers = {"AccessKey": st.secrets["debank"]["api_key"]}
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url)
     if resp.status_code != 200:
         return None
 
