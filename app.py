@@ -26,7 +26,7 @@ if submit:
         append_to_csv(wallet, frequency, balances)
         register_wallet(wallet, frequency)
     else:
-        st.error("Failed to fetch balances.")
+        st.error("Failed to fetch balances. Check your API key and wallet address.")
 
 # Data Export
 if st.button("Export All Data as CSV"):
@@ -34,4 +34,7 @@ if st.button("Export All Data as CSV"):
     csv = df.to_csv(index=False).encode("utf-8")
     st.download_button("Download CSV", csv, "wallet_data.csv")
 
-run_scheduler()
+if "scheduler_started" not in st.session_state:
+    run_scheduler()
+    st.session_state.scheduler_started = True
+
