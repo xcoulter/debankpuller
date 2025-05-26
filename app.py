@@ -30,3 +30,4 @@ if st.button("Export All Data as CSV"):
     st.download_button("Download CSV", csv, "wallet_data.csv")
 
 run_scheduler()
+
