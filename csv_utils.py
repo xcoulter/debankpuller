@@ -24,3 +24,4 @@ def read_csv_data():
     if not os.path.exists(CSV_FILE):
         return pd.DataFrame(columns=["Wallet Address", "Frequency", "Timestamp", "Token", "Token Balance", "USD Value"])
     return pd.read_csv(CSV_FILE)
+
